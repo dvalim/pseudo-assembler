@@ -20,12 +20,14 @@ command makeCommand(char[], char[], char[], char[]);
 
 typedef VECTOR(command) command_vector;
 command_vector program;
+
 void executeRegistry(command);
 void executeJump(command);
 void executeCommand(command);
 
 string_vector label_names, variable_names;
 array memory_history;
+
 void initMemory();
 void freeMemory();
 

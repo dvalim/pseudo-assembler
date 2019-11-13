@@ -1,4 +1,4 @@
-#ifndef DATA_STRUCTURES_H
+﻿#ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
 
 #define _CRT_SECURE_NO_WARNINGS
@@ -50,11 +50,18 @@ typedef struct {
 typedef VECTOR(int) array;
 typedef VECTOR(char) char_vector;
 
+char_vector raw_code;
+string_vector code_lines;
+
+//FUNKCJE POMOCNICZE
+
 int stringEquals(char[], char []);
 int isCommand(char[]);
 int sgn(int v);
-int _max(int, int);
+int _max(int, int); //vstudio definiuje własny max
 int numLength(int);
+
+//MAPA
 
 typedef struct {
 	char key[MAX_INPUT];
@@ -66,8 +73,5 @@ typedef VECTOR(node) map;
 node makeNode(char[], int);
 int compareNodes(const void*, const void*);
 int find(map, char[]);
-
-char_vector raw_code;
-string_vector code_lines;
 
 #endif

@@ -59,6 +59,8 @@ void init() {
 	prev_size = getConsoleSize();
 }
 
+//FUNKCJE POMOCNICZE
+
 char* fill(int n, char c[]) {
 	static char str[1000];
 	n = n*strlen(c);
@@ -76,6 +78,8 @@ void readString(char s[]) {
 		s[i] = input[i];
 }
 
+//WYPISYWANIE
+
 void printMenu(enum menu n) {
 	console_size cs = getConsoleSize();
 	printf("%s%s%s", RESET, CLEAR, fill(cs.rows/3, "\n"));
@@ -86,6 +90,14 @@ void printMenu(enum menu n) {
 		case START:
 			printf("%sZalecane jest uruchomienie konsoli w %strybie pełnoekranowym%s.\n%sPodaj nazwę pliku zawierającego %skod źródłowy%s (z rozszerzeniem) :",
 				MARGIN, CYAN, RESET, MARGIN, CYAN, RESET);
+			break;
+		case REGISTRY:
+			printf("%s%sProgram zakończył działanie.%s\n%sCzy ma być wyświetlona zawartość rejestrów? %sT/N%s",
+				MARGIN, MINT, RESET, MARGIN, HIGHLIGHT_BLINK, RESET);
+			break;
+		case MEMORY:
+			printf("%sCzy ma być wyświetlona zawartość pamięci? %sT/N%s",
+				MARGIN, HIGHLIGHT_BLINK, RESET);
 			break;
 		case LOADING:
 			printf("%sWczytywanie %s...%s",
@@ -100,14 +112,14 @@ void printMenu(enum menu n) {
 				MARGIN, HIGHLIGHT, RESET, HIGHLIGHT, error_message, RESET, MARGIN, HIGHLIGHT, breakpoint, RESET);
 			break;
 		case END:
-			printf("%s%sProgram zakończył działanie.%s\n%sNaciśnij %s[ENTER]%s, aby wyjść.",
-				MARGIN, MINT, RESET, MARGIN, CYAN, RESET);
+			printf("%sNaciśnij %s[ENTER]%s, aby wyjść.",
+				MARGIN, CYAN, RESET);
 			break;
 		
 	}
-	printf("%s%s%s", (n == START ? "\n\n\n\n" : "\n\n"), MARGIN, fill(cs.cols - 10, "─"));
-	printf("%s%s", fill(cs.rows/2 - (n == START), "\n"), MOVE_RIGHT(5));
-	if(n == START) printf("%s»%s ", fill(cs.rows/2+2 - (n == START), MOVE_UP(1)), HIGHLIGHT);
+	printf("%s%s%s", (n <= MEMORY ? "\n\n\n\n" : "\n\n"), MARGIN, fill(cs.cols - 10, "─"));
+	printf("%s%s", fill(cs.rows/2 - (n <= MEMORY), "\n"), MOVE_RIGHT(5));
+	if(n <= MEMORY) printf("%s»%s ", fill(cs.rows/2+2 - (n <= MEMORY), MOVE_UP(1)), HIGHLIGHT);
 }
 
 void expandCommand(command c) {
@@ -261,7 +273,7 @@ void printOutput() {
 	console_size cs = getConsoleSize();
 	if(cs.cols < 3 * whitespace || cs.rows < 15) {
 		printMenu(SMALL_CONSOLE);
-		readString(choice);
+		getchar();
 		return;
 	}
 

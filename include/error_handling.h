@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <limits.h>
 
-#define CONV__ERROR (-2147483648)
+#define CONV_ERROR -2147483647
 
 enum error_code {
     FILE_NOT_FOUND,

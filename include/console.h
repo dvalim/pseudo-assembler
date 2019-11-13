@@ -1,8 +1,10 @@
-#ifndef CONSOLE_H
+﻿#ifndef CONSOLE_H
 #define CONSOLE_H
 
 #include "data_structures.h"
 #include "interpreter.h"
+
+//KODY UCIECZKI ANSI
 
 #define RESET           "\033[0m"
 #define CLEAR           "\033[2J"
@@ -16,13 +18,14 @@
 #define HIGHLIGHT_BLINK "\033[38;5;197;1;5m"
 #define CYAN 		    "\033[38;5;122;1m"
 #define MINT            "\033[38;5;80m"
-#define GREEN_BLINK     "\033[38;5;157;5m"
 
 #define MARGIN          "     "
 
 #define ADD_IF(string) (string ? string : "")
 #define ADD_COND(condition, string) (condition ? string : "")
 #define UNKNOWN 2147483647
+
+//FUNKCJE POMOCNICZE
 
 typedef struct {
 	int rows, cols;
@@ -32,6 +35,9 @@ void init();
 void setupConsole();
 console_size getConsoleSize();
 char* fill(int, char[]);
+void readString(char[]);
+
+//ZMIENNE REGULUJĄCE WYŚWIETLANIE
 
 char input[MAX_INPUT];
 char file_name[MAX_INPUT];
@@ -45,15 +51,17 @@ int code_scroll, memory_scroll;
 int whitespace;
 console_size prev_size;
 
+//FUNKCJE WYŚWIETLAJĄCE
+
 enum menu {
 	START,
+	REGISTRY,
+	MEMORY,
 	LOADING,
 	SMALL_CONSOLE,
-	_ERROR,
+	_ERROR, //vstudio definiuje własny ERROR
 	END
 };
-
-void readString(char[]);
 
 void printMenu(enum menu);
 void expandCommand(command);

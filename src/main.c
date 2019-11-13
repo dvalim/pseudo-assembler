@@ -24,6 +24,8 @@ int main() {
 		fclose(file);
 	} else error(FILE_NOT_FOUND, file_name);
 
+	V_ADD(raw_code, char, 0);
+
 	//PODZIAŁ NA LINIE
 
 	char* line = strtok(raw_code.data, "\n\r");
@@ -142,7 +144,37 @@ int main() {
 		if (step_by_step) printOutput();
 	}
 
-	//INSTRUKCJE KOŃCOWE
+	//WYŚWIETLENIE KOŃCOWYCH STANÓW
+
+	printMenu(REGISTRY);
+	readString(choice);
+	printf("\n\n\n");
+	if (stringEquals(choice, "t") || stringEquals(choice, "T")) {
+		for (int i = 0; i < 16; i++) {
+			printf(MARGIN);
+			printRegistry(i);
+			printf("\n");
+		}
+		printf("\n%s» Naciśnij %s[ENTER]%s, aby przejść dalej.\n%s%s",
+			MARGIN, CYAN, RESET, MOVE_UP(1), "\033[47C");
+		getchar();
+	}
+
+	printMenu(MEMORY);
+	readString(choice);
+	printf("\n\n\n");
+	if (stringEquals(choice, "t") || stringEquals(choice, "T")) {
+		for (int i = 0; i < memory.size; i++) {
+			printf(MARGIN);
+			printMemory(i);
+			printf("\n");
+		}
+		printf("\n%s» Naciśnij %s[ENTER]%s, aby przejść dalej.\n%s%s",
+			MARGIN, CYAN, RESET, MOVE_UP(1), "\033[47C");
+		getchar();
+	}
+
+	//SPRZĄTANIE
 
 	freeMemory();
 
