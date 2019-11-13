@@ -1,5 +1,6 @@
 # pseudo-assembler
-Interpreter oraz emulator pseudo-assemblera napisany w C. 
+Interpreter oraz emulator pseudo-assemblera napisany w C.
+
 Szybka kompilacja na Linuxie:
 
 ```
