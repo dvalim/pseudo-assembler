@@ -6,6 +6,6 @@ Szybka kompilacja na Linuxie:
 make interpreter
 ```
 
-Do??czony jest r�wnie? projekt Visual Studio z plikiem wykonywalnym interpreter.exe
+Dołączony jest również projekt Visual Studio z plikiem wykonywalnym interpreter.exe
 
-Dzia?anie programu mo?na sprawdzi? na plikach w folderze examples, podaj?c mu np. examples/kwadrat.txt jako plik z kodem ?r�d?owym.
+Działanie programu można sprawdzić na plikach w folderze examples, podając mu np. examples/kwadrat.txt jako plik z kodem źródłowym.
