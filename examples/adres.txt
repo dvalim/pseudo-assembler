@@ -1,0 +1,19 @@
+TAB1   DS 50*INTEGER
+ET1    DS INTEGER
+TAB2   DS 20*INTEGER
+ET2    DC INTEGER(5)
+CZTERY DC INTEGER(4)
+PS     DC INTEGER(56)
+
+       L 2,284
+       ST 2,204
+       L 0,ET2
+       SR 0,0
+       L 1,TAB2(0)
+       LA 3,TAB2
+       A 3,PS
+       ST 2,0(3)
+       L 4,CZTERY
+       L 5,TAB2(4)
+       L 1,CZTERY
+       ST 1,0(14)

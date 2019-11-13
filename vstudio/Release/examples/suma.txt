@@ -1,0 +1,24 @@
+JEDEN           DC INTEGER(1)
+CZTERY          DC INTEGER(4)
+DZIESIEC        DC INTEGER(10)
+WEKTOR          DC 10*INTEGER(10)
+SUMA            DS INTEGER
+
+//test test
+
+//komentarz
+
+                L 0,JEDEN
+                SR 0,0
+                LR 2,0
+                LR 3,0
+                LA 4,WEKTOR
+
+POCZATEK        A 3,0(4)
+                A 4,CZTERY
+                A 2,JEDEN
+                C 2,DZIESIEC
+                JZ KONIEC_PROGRAMU
+                J POCZATEK
+
+KONIEC_PROGRAMU ST 3,SUMA
