@@ -16,7 +16,7 @@ CZTERY            DC INTEGER(4)
                   JZ JEDNO_ROZWIAZANIE
                   JN ZERO_ROZWIAZAN
 
-DWA_ROZWIAZANIA   L 3,JEDEN
+DWA_ROZWIAZANIA   L 3,JEDEN 
                   AR 3,3
                   ST 3,WYNIK
                   J KONIEC_PROGRAMU
@@ -24,7 +24,7 @@ JEDNO_ROZWIAZANIE L 3,JEDEN
                   ST 3,WYNIK
                   J KONIEC_PROGRAMU
 ZERO_ROZWIAZAN    L 3,ZERO
-                  ST 3,WYNIK
+                  ST 3,WYNIK 
                   J KONIEC_PROGRAMU
 
-KONIEC_PROGRAMU   C 1,1
+KONIEC_PROGRAMU   C 1,1 
