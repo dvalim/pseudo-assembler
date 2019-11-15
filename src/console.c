@@ -197,9 +197,9 @@ void printLine(int i) {
 	printf(" %s%s%s%d.%s%s%s", 
 		MARGIN, SAVE, (current ? "\033[7m" : MINT), i, (current ? "" : RESET), RESTORE, fill(numLength(program.size) + 3, MOVE_RIGHT(1)));
 	printf("%s%s%s%s", 
-		ADD_COND(!current, HIGHLIGHT), label_names.data[i], RESTORE, fill(longest_label + numLength(program.size) + 4, MOVE_RIGHT(1)));
+		(current ? "\033[7m" : HIGHLIGHT), label_names.data[i], RESTORE, fill(longest_label + numLength(program.size) + 4, MOVE_RIGHT(1)));
 	printf("%s%s%s%s %s%s%s%s%s%s%s",
-		ADD_COND(!current, CYAN),
+		(current ? "\033[7m" : HIGHLIGHT),
 		comm.code,
 		(strlen(comm.code) > 1 ? "" : " "),
 		(current ? "" : RESET),
