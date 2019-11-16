@@ -31,7 +31,7 @@ int main() {
 	char* line = strtok(raw_code.data, "\n\r");
 	while (line != NULL) {
 		if(strlen(line) > 100) error(LINE_TOO_LONG, line);
-		V_ADD_STRING(code_lines, char[MAX_INPUT], line);
+		V_ADD_STRING(code_lines, char[MAX_LENGTH], line);
 		line = strtok(NULL, "\n\r");
 	}
 
@@ -42,12 +42,12 @@ int main() {
 	registry[14] = 0;
 
 	for (int i = 0; i < code_lines.size; i++) {
-		char line[MAX_INPUT];
+		char line[MAX_LENGTH];
 		strcpy(line, code_lines.data[i]);
 
 		//PODZIAŁ LINII NA SŁOWA
 
-		char tokens[6][MAX_INPUT];
+		char tokens[6][MAX_LENGTH];
 		int token_number = 0;
 		char* token = strtok(code_lines.data[i], " ,()*\t");
 		if(token == NULL || token[0] == '/') continue;
@@ -66,7 +66,7 @@ int main() {
 			longest_var = _max(longest_var, strlen(tokens[0]));
 
 			V_ADD(variables, node, makeNode(tokens[0], memory.size));
-			V_ADD_STRING(variable_names, char[MAX_INPUT], tokens[0]);
+			V_ADD_STRING(variable_names, char[MAX_LENGTH], tokens[0]);
 
 			if (stringEquals(tokens[1], "DC")) {
 				V_ADD(memory, int, atoi(tokens[token_number - 1]));
@@ -84,7 +84,7 @@ int main() {
 				while (array_size--) {
 					V_ADD(memory, int, base_value);
 					V_ADD(memory_history, int, base_value);
-					V_ADD_STRING(variable_names, char[MAX_INPUT], "?");
+					V_ADD_STRING(variable_names, char[MAX_LENGTH], "?");
 				}
 			}
 		} else {
@@ -94,8 +94,8 @@ int main() {
 			if (if_label) {
 				longest_label = _max(longest_label, strlen(tokens[0]));
 				V_ADD(labels, node, makeNode(tokens[0], current_line));
-				V_ADD_STRING(label_names, char[MAX_INPUT], tokens[0]);
-			} else V_ADD_STRING(label_names, char[MAX_INPUT], "");
+				V_ADD_STRING(label_names, char[MAX_LENGTH], tokens[0]);
+			} else V_ADD_STRING(label_names, char[MAX_LENGTH], "");
 
 			command comm = makeCommand(
 				tokens[if_label],
@@ -125,7 +125,7 @@ int main() {
 
 	while (current_line < program.size) {
 		prev_line = current_line;
-		char code[MAX_INPUT];
+		char code[MAX_LENGTH];
 		strcpy(code, program.data[current_line].code);
 
 		if (strlen(code) > 1 && code[1] == 'R') {

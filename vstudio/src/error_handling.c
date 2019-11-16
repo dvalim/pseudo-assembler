@@ -20,7 +20,7 @@ int checkRegister(char r[]) {
 }
 
 void reconstructLine(command c, char line[]) {
-	char temp[MAX_INPUT];
+	char temp[MAX_LENGTH];
 	memset(temp, 0, sizeof temp);
 	if (strlen(label_names.data[current_line])) {
 		strcat(temp, label_names.data[current_line]);
@@ -65,7 +65,7 @@ void error(enum error_code code, char c[]) {
 
 //SPRAWDZENIE SKŁADNI
 
-void checkParsing(char tokens[][MAX_INPUT], int token_number, char line[]) {
+void checkParsing(char tokens[][MAX_LENGTH], int token_number, char line[]) {
     if(token_number < 2) error(INVALID_SYNTAX, line);
     if(!isCommand(tokens[0]) && !isCommand(tokens[1])) error(INVALID_COMMAND, line);
     int if_label = !isCommand(tokens[0]);
@@ -110,7 +110,7 @@ void checkParsing(char tokens[][MAX_INPUT], int token_number, char line[]) {
 
 void checkRegistryExecution(command c) {
     if(stringEquals(c.code, "DR") && registry[atoi(c.arg2)] == 0){
-        char line[MAX_INPUT];
+        char line[MAX_LENGTH];
         reconstructLine(c, line);
         error(DIVISION_BY_ZERO, line);
     } 
@@ -118,14 +118,14 @@ void checkRegistryExecution(command c) {
 
 void checkJumpExecution(command c) {
     if(find(labels, c.arg1) == -1) {
-        char line[MAX_INPUT];
+        char line[MAX_LENGTH];
         reconstructLine(c, line);
         error(LABEL_MISSING, line);
     }
 }
 
 void checkCommandExecution(command c) {
-    char line[MAX_INPUT];
+    char line[MAX_LENGTH];
     reconstructLine(c, line);
 
 	int id2 = find(variables, c.arg2);

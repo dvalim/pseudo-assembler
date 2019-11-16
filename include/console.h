@@ -39,12 +39,12 @@ void readString(char[]);
 
 //ZMIENNE REGULUJĄCE WYŚWIETLANIE
 
-char input[MAX_INPUT];
-char file_name[MAX_INPUT];
-char choice[MAX_INPUT];
+char input[MAX_LENGTH];
+char file_name[MAX_LENGTH];
+char choice[MAX_LENGTH];
 
 int step_by_step;
-int prev_line, registry_history[16];
+int prev_line;
 int longest_var, longest_label, longest_command;
 int code_scroll, memory_scroll;
 

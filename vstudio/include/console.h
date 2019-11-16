@@ -39,9 +39,9 @@ void readString(char[]);
 
 //ZMIENNE REGULUJĄCE WYŚWIETLANIE
 
-char input[MAX_INPUT];
-char file_name[MAX_INPUT];
-char choice[MAX_INPUT];
+char input[MAX_LENGTH];
+char file_name[MAX_LENGTH];
+char choice[MAX_LENGTH];
 
 int step_by_step;
 int prev_line, registry_history[16];

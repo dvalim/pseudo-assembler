@@ -17,7 +17,7 @@ void executeRegistry(command c) {
 	if		(stringEquals(c.code, "AR")) registry[arg1] += registry[arg2];
 	else if (stringEquals(c.code, "SR")) registry[arg1] -= registry[arg2];
 	else if (stringEquals(c.code, "MR")) registry[arg1] *= registry[arg2];
-	else if (stringEquals(c.code, "DR")) registry[arg1] /= registry[arg2];
+	else if (stringEquals(c.code, "DR")) { if(registry[arg2]) registry[arg1] /= registry[arg2]; }
 	else if (stringEquals(c.code, "CR")) state = sgn(registry[arg1] - registry[arg2]);
 	else if (stringEquals(c.code, "LR")) registry[arg1] = registry[arg2];
 
@@ -35,7 +35,7 @@ void executeJump(command c) {
 }
 
 void executeCommand(command c) {
-	char code[MAX_INPUT], arg1[MAX_INPUT], arg2[MAX_INPUT], arg3[MAX_INPUT];
+	char code[MAX_LENGTH], arg1[MAX_LENGTH], arg2[MAX_LENGTH], arg3[MAX_LENGTH];
 	strcpy(code, c.code);
 	strcpy(arg1, c.arg1);
 	strcpy(arg2, c.arg2);
@@ -66,8 +66,10 @@ void executeCommand(command c) {
 		registry[id1] *= memory.data[id2];
 		state = sgn(registry[id1]);
 	} else if (stringEquals(code, "D")) {
-		registry[id1] /= memory.data[id2];
-		state = sgn(registry[id1]);
+		if(memory.data[id2]) {
+			registry[id1] /= memory.data[id2];
+			state = sgn(registry[id1]);
+		}
 	} else if (stringEquals(code, "C")) {
 		state = sgn(registry[id1] - memory.data[id2]);
 	}
@@ -81,13 +83,13 @@ void executeCommand(command c) {
 
 void initMemory() {
 	V_INIT(raw_code, char);
-	V_INIT(code_lines, char[MAX_INPUT]);
+	V_INIT(code_lines, char[MAX_LENGTH]);
 	V_INIT(memory, int);
 	V_INIT(memory_history, int);
 	V_INIT(variables, node);
-	V_INIT(variable_names, char[MAX_INPUT]);
+	V_INIT(variable_names, char[MAX_LENGTH]);
 	V_INIT(labels, node);
-	V_INIT(label_names, char[MAX_INPUT]);
+	V_INIT(label_names, char[MAX_LENGTH]);
 	V_INIT(program, command);
 }
 

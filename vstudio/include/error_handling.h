@@ -20,7 +20,7 @@ enum error_code {
     INVALID_ADDRESS
 };
 
-char breakpoint[MAX_INPUT * 10], error_message[MAX_INPUT];
+char breakpoint[MAX_LENGTH * 10], error_message[MAX_LENGTH];
 
 int stringToInt(char[]);
 int checkRegister(char[]);
@@ -28,7 +28,7 @@ void reconstructLine(command, char[]);
 
 void error(enum error_code, char[]);
 
-void checkParsing(char[][MAX_INPUT], int, char[]);
+void checkParsing(char[][MAX_LENGTH], int, char[]);
 void checkRegistryExecution(command);
 void checkJumpExecution(command);
 void checkCommandExecution(command);

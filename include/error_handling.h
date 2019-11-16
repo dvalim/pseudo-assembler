@@ -14,13 +14,12 @@ enum error_code {
     LINE_TOO_LONG,
     INVALID_COMMAND,
     INVALID_SYNTAX,
-    DIVISION_BY_ZERO,
     LABEL_MISSING,
     VARIABLE_MISSING,
     INVALID_ADDRESS
 };
 
-char breakpoint[MAX_INPUT * 10], error_message[MAX_INPUT];
+char breakpoint[MAX_LENGTH * 10], error_message[MAX_LENGTH];
 
 int stringToInt(char[]);
 int checkRegister(char[]);
@@ -28,8 +27,7 @@ void reconstructLine(command, char[]);
 
 void error(enum error_code, char[]);
 
-void checkParsing(char[][MAX_INPUT], int, char[]);
-void checkRegistryExecution(command);
+void checkParsing(char[][MAX_LENGTH], int, char[]);
 void checkJumpExecution(command);
 void checkCommandExecution(command);
 

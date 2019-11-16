@@ -40,11 +40,11 @@
     free(V.data); \
 } while(0)
 
-#define MAX_INPUT 100
+#define MAX_LENGTH 100
 
 typedef struct {
 	int size, capacity;
-	char (*data)[MAX_INPUT];
+	char (*data)[MAX_LENGTH];
 } string_vector;
 
 typedef VECTOR(int) array;
@@ -64,7 +64,7 @@ int numLength(int);
 //MAPA
 
 typedef struct {
-	char key[MAX_INPUT];
+	char key[MAX_LENGTH];
 	int value;
 } node;
 

@@ -20,7 +20,7 @@ int checkRegister(char r[]) {
 }
 
 void reconstructLine(command c, char line[]) {
-	char temp[MAX_INPUT];
+	char temp[MAX_LENGTH];
 	memset(temp, 0, sizeof temp);
 	if (strlen(label_names.data[current_line])) {
 		strcat(temp, label_names.data[current_line]);
@@ -49,7 +49,6 @@ void error(enum error_code code, char c[]) {
     else if(code == LINE_TOO_LONG) strcpy(error_message, "Zbyt długa linia");
     else if(code == INVALID_COMMAND) strcpy(error_message, "Nieprawidłowy rozkaz");
     else if(code == INVALID_SYNTAX) strcpy(error_message, "Nieprawidłowa składnia");
-    else if(code == DIVISION_BY_ZERO) strcpy(error_message, "Dzielenie przez 0");
     else if(code == LABEL_MISSING) strcpy(error_message, "Nie znaleziono etykiety");
     else if(code == VARIABLE_MISSING) strcpy(error_message, "Nie znaleziono zmiennej");
     else if(code == INVALID_ADDRESS) strcpy(error_message, "Nieprawidłowy adres");
@@ -57,15 +56,15 @@ void error(enum error_code code, char c[]) {
     printf(CLEAR);
     printMenu(_ERROR);
 	printf("\n\n\n\033[?25h%s", RESET);
-	getchar();
     freeMemory();
+    getchar();
 
 	exit(0);
 }
 
 //SPRAWDZENIE SKŁADNI
 
-void checkParsing(char tokens[][MAX_INPUT], int token_number, char line[]) {
+void checkParsing(char tokens[][MAX_LENGTH], int token_number, char line[]) {
     if(token_number < 2) error(INVALID_SYNTAX, line);
     if(!isCommand(tokens[0]) && !isCommand(tokens[1])) error(INVALID_COMMAND, line);
     int if_label = !isCommand(tokens[0]);
@@ -108,36 +107,20 @@ void checkParsing(char tokens[][MAX_INPUT], int token_number, char line[]) {
 
 //SPRAWDZENIE EGZEKUCJI ROZKAZÓW
 
-void checkRegistryExecution(command c) {
-    if(stringEquals(c.code, "DR") && registry[atoi(c.arg2)] == 0){
-        char line[MAX_INPUT];
-        reconstructLine(c, line);
-        error(DIVISION_BY_ZERO, line);
-    } 
-}
-
 void checkJumpExecution(command c) {
     if(find(labels, c.arg1) == -1) {
-        char line[MAX_INPUT];
+        char line[MAX_LENGTH];
         reconstructLine(c, line);
         error(LABEL_MISSING, line);
     }
 }
 
 void checkCommandExecution(command c) {
-    char line[MAX_INPUT];
+    char line[MAX_LENGTH];
     reconstructLine(c, line);
 
 	int id2 = find(variables, c.arg2);
     int test = stringToInt(c.arg2);
     if(test == CONV_ERROR && id2 == -1) error(VARIABLE_MISSING, line);
     else if(id2 == -1 && (test > memory.size * 4 || test < 0))  error(INVALID_ADDRESS, line);
-    else {
-        if(id2 == -1) id2 = test;
-        id2 *= 4;
-        if(strlen(c.arg3)) id2 += registry[atoi(c.arg3)];
-        id2 /= 4;
-        
-        if(stringEquals(c.code, "D") && memory.data[id2] == 0) error(DIVISION_BY_ZERO, line);
-    }
 }

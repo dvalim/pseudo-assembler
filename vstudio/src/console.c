@@ -72,7 +72,7 @@ char* fill(int n, char c[]) {
 }
 
 void readString(char s[]) {
-	fgets(input, MAX_INPUT, stdin);
+	fgets(input, MAX_LENGTH, stdin);
 	int len = strlen(input);
 	for (int i = 0; i < len - 1; i++)
 		s[i] = input[i];
@@ -125,7 +125,7 @@ void printMenu(enum menu n) {
 void expandCommand(command c) {
 	printf("%s   ╰── %s", MARGIN, SAVE);
 	if (strlen(c.code) > 1 && c.code[1] == 'R') {
-		char operator[MAX_INPUT];
+		char operator[MAX_LENGTH];
 		if (stringEquals(c.code, "AR")) strcpy(operator, "+");
 		else if(stringEquals(c.code, "SR")) strcpy(operator, "-");
 		else if(stringEquals(c.code, "MR")) strcpy(operator, "*");
@@ -145,7 +145,7 @@ void expandCommand(command c) {
 		printf("%d → %d (%s)", 
 			prev_line, current_line, program.data[prev_line].arg1);
 	} else {
-		char operator[MAX_INPUT];
+		char operator[MAX_LENGTH];
 		if (stringEquals(c.code, "A")) strcpy(operator, "+");
 		else if(stringEquals(c.code, "S")) strcpy(operator, "-");
 		else if(stringEquals(c.code, "M")) strcpy(operator, "*");
@@ -267,7 +267,7 @@ void printMemory(int i) {
 }
 
 void printOutput() {
-	char code[MAX_INPUT];
+	char code[MAX_LENGTH];
 	strcpy(code, program.data[current_line].code);
 
 	console_size cs = getConsoleSize();

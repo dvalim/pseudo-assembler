@@ -13,7 +13,7 @@ int registry[16];
 int prev_memory_change, prev_arg2;
 
 typedef struct {
-	char code[MAX_INPUT], arg1[MAX_INPUT], arg2[MAX_INPUT], arg3[MAX_INPUT];
+	char code[MAX_LENGTH], arg1[MAX_LENGTH], arg2[MAX_LENGTH], arg3[MAX_LENGTH];
 } command;
 
 command makeCommand(char[], char[], char[], char[]);
@@ -27,6 +27,7 @@ void executeCommand(command);
 
 string_vector label_names, variable_names;
 array memory_history;
+int registry_history[16];
 
 void initMemory();
 void freeMemory();
