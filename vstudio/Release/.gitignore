@@ -1,4 +1,5 @@
 # Ignore everything in this directory
 *
-# Except this file
-!.gitignore
+# Except these files
+!interpreter.exe
+!examples
