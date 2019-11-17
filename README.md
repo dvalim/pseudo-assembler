@@ -1,7 +1,7 @@
 # pseudo-assembler
 Interpreter oraz emulator pseudo-assemblera napisany w C.
 
-Szybka kompilacja na Linuxie:
+Szybka instalacja na Linuxie:
 
 ```
 git clone https://github.com/dvalim/pseudo-assembler
