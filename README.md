@@ -9,7 +9,4 @@ cd pseudo-assembler
 make interpreter
 ```
 
-
-Dołączony jest również projekt Visual Studio z plikiem wykonywalnym interpreter.exe
-
 Działanie programu można sprawdzić na plikach w folderze examples, podając mu np. examples/kwadrat.txt jako plik z kodem źródłowym.
