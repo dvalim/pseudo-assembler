@@ -14,7 +14,6 @@ enum error_code {
     LINE_TOO_LONG,
     INVALID_COMMAND,
     INVALID_SYNTAX,
-    DIVISION_BY_ZERO,
     LABEL_MISSING,
     VARIABLE_MISSING,
     INVALID_ADDRESS
@@ -29,7 +28,6 @@ void reconstructLine(command, char[]);
 void error(enum error_code, char[]);
 
 void checkParsing(char[][MAX_LENGTH], int, char[]);
-void checkRegistryExecution(command);
 void checkJumpExecution(command);
 void checkCommandExecution(command);
 

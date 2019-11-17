@@ -27,6 +27,7 @@ void executeCommand(command);
 
 string_vector label_names, variable_names;
 array memory_history;
+int registry_history[16];
 
 void initMemory();
 void freeMemory();

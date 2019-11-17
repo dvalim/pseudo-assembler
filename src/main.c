@@ -146,9 +146,9 @@ int main() {
 
 	printMenu(REGISTRY);
 	readString(choice);
-	printf("%s\n\n\n", RESET);
+	printf("\n\n\n");
 	if (stringEquals(choice, "t") || stringEquals(choice, "T")) {
-		for (int i = 0; i <= 17; i++) {
+		for (int i = 0; i < 16; i++) {
 			printf(MARGIN);
 			printRegistry(i);
 			printf("\n");
@@ -160,7 +160,7 @@ int main() {
 
 	printMenu(MEMORY);
 	readString(choice);
-	printf("%s\n\n\n", RESET);
+	printf("\n\n\n");
 	if (stringEquals(choice, "t") || stringEquals(choice, "T")) {
 		for (int i = 0; i < memory.size; i++) {
 			printf(MARGIN);

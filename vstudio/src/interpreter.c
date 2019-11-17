@@ -17,7 +17,7 @@ void executeRegistry(command c) {
 	if		(stringEquals(c.code, "AR")) registry[arg1] += registry[arg2];
 	else if (stringEquals(c.code, "SR")) registry[arg1] -= registry[arg2];
 	else if (stringEquals(c.code, "MR")) registry[arg1] *= registry[arg2];
-	else if (stringEquals(c.code, "DR")) registry[arg1] /= registry[arg2];
+	else if (stringEquals(c.code, "DR")) { if(registry[arg2]) registry[arg1] /= registry[arg2]; }
 	else if (stringEquals(c.code, "CR")) state = sgn(registry[arg1] - registry[arg2]);
 	else if (stringEquals(c.code, "LR")) registry[arg1] = registry[arg2];
 
@@ -66,8 +66,10 @@ void executeCommand(command c) {
 		registry[id1] *= memory.data[id2];
 		state = sgn(registry[id1]);
 	} else if (stringEquals(code, "D")) {
-		registry[id1] /= memory.data[id2];
-		state = sgn(registry[id1]);
+		if(memory.data[id2]) {
+			registry[id1] /= memory.data[id2];
+			state = sgn(registry[id1]);
+		}
 	} else if (stringEquals(code, "C")) {
 		state = sgn(registry[id1] - memory.data[id2]);
 	}

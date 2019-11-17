@@ -1,7 +1,10 @@
 ﻿  console.c
+  data_structures.c
+c:\users\youmuu\desktop\interpreter\git\pseudo-assembler\vstudio\src\data_structures.c(28): warning C4244: 'return': conversion from 'double' to 'int', possible loss of data
+  error_handling.c
+  interpreter.c
+  main.c
   Generating code
-  2 of 37 functions ( 5.4%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  All 36 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
   Finished generating code
-  interpreter.vcxproj -> H:\pseudo-assembler\vstudio\Release\interpreter.exe
+  interpreter.vcxproj -> C:\Users\Youmuu\Desktop\interpreter\git\pseudo-assembler\vstudio\Release\interpreter.exe

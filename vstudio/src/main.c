@@ -23,14 +23,13 @@ int main() {
 			V_ADD(raw_code, char, c);
 		fclose(file);
 	} else error(FILE_NOT_FOUND, file_name);
-
 	V_ADD(raw_code, char, 0);
 
 	//PODZIAŁ NA LINIE
 
 	char* line = strtok(raw_code.data, "\n\r");
 	while (line != NULL) {
-		if(strlen(line) > 100) error(LINE_TOO_LONG, line);
+		if(strlen(line) > MAX_LENGTH) error(LINE_TOO_LONG, line);
 		V_ADD_STRING(code_lines, char[MAX_LENGTH], line);
 		line = strtok(NULL, "\n\r");
 	}
@@ -129,7 +128,6 @@ int main() {
 		strcpy(code, program.data[current_line].code);
 
 		if (strlen(code) > 1 && code[1] == 'R') {
-			checkRegistryExecution(program.data[current_line]);
 			executeRegistry(program.data[current_line]);
 		} else if (code[0] == 'J') {
 			checkJumpExecution(program.data[current_line]);

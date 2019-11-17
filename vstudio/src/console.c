@@ -4,6 +4,14 @@
 
 //PRZYGOTOWANIE KONSOLI
 
+void init() {
+	step_by_step = 1;
+	prev_line = current_line = 0;
+	longest_var = longest_label = longest_command = 0;
+	code_scroll = memory_scroll = prev_memory_change = 0;
+	prev_size = getConsoleSize();
+}
+
 #ifdef _WIN32
 #include <windows.h>
 
@@ -51,14 +59,6 @@ console_size getConsoleSize() {
 
 #endif
 
-void init() {
-	step_by_step = 1;
-	prev_line = current_line = 0;
-	longest_var = longest_label = longest_command = 0;
-	code_scroll = memory_scroll = prev_memory_change = 0;
-	prev_size = getConsoleSize();
-}
-
 //FUNKCJE POMOCNICZE
 
 char* fill(int n, char c[]) {
@@ -67,7 +67,7 @@ char* fill(int n, char c[]) {
 	if(n > 1000) n = 1000;
 	memset(str, 0, sizeof str);
 	for(int i = 0; i < n; i++)
-		str[i] = c[i%strlen(c)];
+		str[i] = c[i % strlen(c)];
 	return str;
 }
 
@@ -199,7 +199,7 @@ void printLine(int i) {
 	printf("%s%s%s%s", 
 		(current ? "\033[7m" : HIGHLIGHT), label_names.data[i], RESTORE, fill(longest_label + numLength(program.size) + 4, MOVE_RIGHT(1)));
 	printf("%s%s%s%s %s%s%s%s%s%s%s",
-		(current ? "\033[7m" : HIGHLIGHT),
+		(current ? "\033[7m" : CYAN),
 		comm.code,
 		(strlen(comm.code) > 1 ? "" : " "),
 		(current ? "" : RESET),

@@ -49,7 +49,6 @@ void error(enum error_code code, char c[]) {
     else if(code == LINE_TOO_LONG) strcpy(error_message, "Zbyt długa linia");
     else if(code == INVALID_COMMAND) strcpy(error_message, "Nieprawidłowy rozkaz");
     else if(code == INVALID_SYNTAX) strcpy(error_message, "Nieprawidłowa składnia");
-    else if(code == DIVISION_BY_ZERO) strcpy(error_message, "Dzielenie przez 0");
     else if(code == LABEL_MISSING) strcpy(error_message, "Nie znaleziono etykiety");
     else if(code == VARIABLE_MISSING) strcpy(error_message, "Nie znaleziono zmiennej");
     else if(code == INVALID_ADDRESS) strcpy(error_message, "Nieprawidłowy adres");
@@ -57,8 +56,8 @@ void error(enum error_code code, char c[]) {
     printf(CLEAR);
     printMenu(_ERROR);
 	printf("\n\n\n\033[?25h%s", RESET);
-	getchar();
     freeMemory();
+    getchar();
 
 	exit(0);
 }
@@ -108,14 +107,6 @@ void checkParsing(char tokens[][MAX_LENGTH], int token_number, char line[]) {
 
 //SPRAWDZENIE EGZEKUCJI ROZKAZÓW
 
-void checkRegistryExecution(command c) {
-    if(stringEquals(c.code, "DR") && registry[atoi(c.arg2)] == 0){
-        char line[MAX_LENGTH];
-        reconstructLine(c, line);
-        error(DIVISION_BY_ZERO, line);
-    } 
-}
-
 void checkJumpExecution(command c) {
     if(find(labels, c.arg1) == -1) {
         char line[MAX_LENGTH];
@@ -132,12 +123,4 @@ void checkCommandExecution(command c) {
     int test = stringToInt(c.arg2);
     if(test == CONV_ERROR && id2 == -1) error(VARIABLE_MISSING, line);
     else if(id2 == -1 && (test > memory.size * 4 || test < 0))  error(INVALID_ADDRESS, line);
-    else {
-        if(id2 == -1) id2 = test;
-        id2 *= 4;
-        if(strlen(c.arg3)) id2 += registry[atoi(c.arg3)];
-        id2 /= 4;
-        
-        if(stringEquals(c.code, "D") && memory.data[id2] == 0) error(DIVISION_BY_ZERO, line);
-    }
 }

@@ -199,7 +199,7 @@ void printLine(int i) {
 	printf("%s%s%s%s", 
 		(current ? "\033[7m" : HIGHLIGHT), label_names.data[i], RESTORE, fill(longest_label + numLength(program.size) + 4, MOVE_RIGHT(1)));
 	printf("%s%s%s%s %s%s%s%s%s%s%s",
-		(current ? "\033[7m" : HIGHLIGHT),
+		(current ? "\033[7m" : CYAN),
 		comm.code,
 		(strlen(comm.code) > 1 ? "" : " "),
 		(current ? "" : RESET),
